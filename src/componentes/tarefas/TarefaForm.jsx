@@ -99,7 +99,7 @@ function TarefaForm({ adicionarTarefa }) {
             <option value="concluida">Concluída</option>
         </select>
 
-        <button type="submit">Salvar tarefa</button>
+        <button className="btn-salvar" type="submit">Salvar tarefa</button>
     </form>
   );
 }

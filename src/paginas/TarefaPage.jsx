@@ -16,14 +16,14 @@ function TarefaPage() {
                 <h1> TAREFAS </h1>
                 <p> Administre as suas tarefas aqui!</p>
 
-                <button onClick={() => setModalAberto(true)}>Nova Tarefa</button>
+                <button className="btn-abrir-form" onClick={() => setModalAberto(true)}>Nova Tarefa</button>
             </div>
 
             {/* adicionando um pop-up para criacao do formulario (achei melhor assim) */}
             {modalAberto && (
                 <div className="modal-overlay">
                     <div className="modal">
-                        <button onClick={() => setModalAberto(false)}>Fechar</button>
+                        <button className="btn-fechar" onClick={() => setModalAberto(false)}>Fechar</button>
 
                         <TarefaForm adicionarTarefa={adicionarTarefa}/>
                     </div>
