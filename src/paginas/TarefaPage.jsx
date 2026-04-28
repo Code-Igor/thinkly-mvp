@@ -48,7 +48,10 @@ function TarefaPage() {
             <div>
                 <h2> LISTA DE TAREFAS </h2>
 
-                <TarefaList tarefas={tarefas} excluirTarefa={excluirTarefa} />
+                <div className="listaTarefas"> 
+                    <TarefaList tarefas={tarefas} excluirTarefa={excluirTarefa} />
+                </div>
+                
             </div>
         </div>
     );
