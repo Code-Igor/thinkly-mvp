@@ -1,10 +1,11 @@
 function Header() {
   return (
+    // titulo a esquerda e links a direita
     <header className="header">
-      <h1> THINKLY </h1>
+      <h2> THINKLY </h2>
       <nav>
-        <a href="/">Tarefas</a>
-        <a href="/anotacoes">Anotações</a>
+        <a href="/">TAREFAS</a>
+        <a href="/anotacoes">ANOTAÇÕES</a>
       </nav>
     </header>
   );
