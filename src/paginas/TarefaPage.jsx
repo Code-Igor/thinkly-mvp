@@ -1,13 +1,26 @@
 import TarefaForm from "../componentes/tarefas/TarefaForm.jsx";
+import TarefaList from "../componentes/tarefas/TarefaList.jsx";
 import { useState } from "react";
 
 function TarefaPage() {
 
+    // lista de tarefas
+    // comeca vazia e dpois adiciona novas tarefas 
+    const [tarefas, setTarefas] = useState([]);
     //
     const [modalAberto, setModalAberto] = useState(false);
 
     function adicionarTarefa(novaTarefa) {
+        setTarefas([...tarefas, novaTarefa]);
         alert("Tarefa adicionada com sucesso!");
+    }
+
+    function excluirTarefa(id) {
+        const confirmou = window.confirm("Deseja realmente excluir esta tarefa?");
+        if (!confirmou) return;
+
+        // acha a tarefa exato pelo id
+        setTarefas(tarefas.filter((tarefa) => tarefa.id !== id));
     }
 
     return (
@@ -34,6 +47,8 @@ function TarefaPage() {
 
             <div>
                 <h2> LISTA DE TAREFAS </h2>
+
+                <TarefaList tarefas={tarefas} excluirTarefa={excluirTarefa} />
             </div>
         </div>
     );

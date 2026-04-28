@@ -4,10 +4,10 @@ function TarefaList({ tarefas, excluirTarefa }) {
     return (
         <div>
             {/*  percorre a lista de tarefas (tarefas.map)
-                Para cada tarefa, cria um componente TaskCard
+                Para cada tarefa, cria um componente TarefaCard
                 e dai renderiza um card para cada tarefa existente */}
             {tarefas.map((tarefa) => (
-                <TaskCard
+                <TarefaCard
                     key={tarefa.id}
                     tarefa={tarefa}
                     excluirTarefa={excluirTarefa}
