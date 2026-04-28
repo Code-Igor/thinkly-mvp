@@ -109,3 +109,29 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* <header> */
+.header{
+  background-color: #1f2028;
+  display: flex; /* organizando para que o titulo fique a esquerda e os links a direita*/
+  justify-content: space-between; 
+  align-items: center;           
+  padding: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.header nav {
+  display: flex; /* criando espaço entre os links */
+  gap: 20px;
+}
+
+.header nav a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.header nav a:hover {
+  color: #b3abf7;
+}
+/* </header> */
