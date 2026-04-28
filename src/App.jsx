@@ -1,22 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Layout from "./componentes/Layout";
+import TarefaPage from "./paginas/TarefaPage";
+import AnotacaoPage from "./paginas/AnotacaoPage";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <Layout>
+      <Routes>
+        <Route path="/" element={<TarefaPage />} />
+        <Route path="/anotacoes" element={<AnotacaoPage />} />
+      </Routes>
+    </Layout>
+  );
 }
 
-export default App
+export default App;
