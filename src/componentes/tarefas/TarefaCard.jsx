@@ -1,4 +1,4 @@
-function TarefaCard({ tarefa, excluirTarefa }) {
+function TarefaCard({ tarefa, excluirTarefa, abrirEdicao }) {
     return (
         // usando article somente para ser menos generico (do que uma div)
         <article>
@@ -7,7 +7,9 @@ function TarefaCard({ tarefa, excluirTarefa }) {
             <p>{tarefa.metaConclusao || "Sem data"}</p>
             <p>Prioridade: {tarefa.prioridade || "Sem prioridade"}</p>
             <p>Status: {tarefa.status || "Sem prioridade"}</p>
-
+            <button onClick={() => abrirEdicao(tarefa)}>
+                Editar
+            </button>
             <button onClick={() => excluirTarefa(tarefa.id)}>
                 Excluir
             </button>

@@ -7,8 +7,10 @@ function TarefaPage() {
     // lista de tarefas
     // comeca vazia e dpois adiciona novas tarefas 
     const [tarefas, setTarefas] = useState([]);
-    //
+    // estado para o model
     const [modalAberto, setModalAberto] = useState(false);
+    // estado de edicao
+    const [tarefaEmEdicao, setTarefaEmEdicao] = useState(null);
 
     function adicionarTarefa(novaTarefa) {
         setTarefas([...tarefas, novaTarefa]);
@@ -21,6 +23,36 @@ function TarefaPage() {
 
         // acha a tarefa exato pelo id
         setTarefas(tarefas.filter((tarefa) => tarefa.id !== id));
+    }
+
+    // para editar
+    function editarTarefa(tarefaEditada) {
+
+        // passa pela lista de tarefas
+        // encontra a tarefa editada e a substitui pela antiga
+        const tarefasAtualizadas = tarefas.map((tarefa) => {
+            if (tarefa.id === tarefaEditada.id) {
+                return tarefaEditada;
+            }
+
+            return tarefa;
+        });
+
+        // atualiza o estado da lista de tarefas
+        // renderizar a lista com a tarefa editada
+        setTarefas(tarefasAtualizadas);
+        //limpa tarefa
+        setTarefaEmEdicao(null);
+        // fecha o modal de edição
+        setModalAberto(false);
+        
+        alert("Tarefa editada com sucesso!");
+    }
+
+    // entra no estado de edicao
+    function abrirEdicao(tarefa) {
+        setTarefaEmEdicao(tarefa);
+        setModalAberto(true);
     }
 
     return (
@@ -39,7 +71,9 @@ function TarefaPage() {
                         <div className="modal">
                             <button className="btn-fechar" onClick={() => setModalAberto(false)}>Fechar</button>
 
-                            <TarefaForm adicionarTarefa={adicionarTarefa} />
+                            <TarefaForm adicionarTarefa={adicionarTarefa}
+                                editarTarefa={editarTarefa}
+                                tarefaEmEdicao={tarefaEmEdicao} />
                         </div>
                     </div>
                 )}
@@ -48,10 +82,10 @@ function TarefaPage() {
             <div>
                 <h2> LISTA DE TAREFAS </h2>
 
-                <div className="listaTarefas"> 
-                    <TarefaList tarefas={tarefas} excluirTarefa={excluirTarefa} />
+                <div className="listaTarefas">
+                    <TarefaList tarefas={tarefas} excluirTarefa={excluirTarefa} abrirEdicao={abrirEdicao} />
                 </div>
-                
+
             </div>
         </div>
     );

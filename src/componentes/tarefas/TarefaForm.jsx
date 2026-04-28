@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function TarefaForm({ adicionarTarefa }) {
+function TarefaForm({ adicionarTarefa, editarTarefa, tarefaEmEdicao }) {
 
     // estados (valor padrao) 
     const [titulo, setTitulo] = useState("");
@@ -8,6 +8,21 @@ function TarefaForm({ adicionarTarefa }) {
     const [metaConclusao, setMetaConclusao] = useState("");
     const [prioridade, setPrioridade] = useState("");
     const [status, setStatus] = useState("não iniciada");
+
+
+    // para a edicao do formulario/card
+    // altera o estado da tarefa com os novos dados
+    useEffect(() => {
+        if (tarefaEmEdicao) {
+            setTitulo(tarefaEmEdicao.titulo || "");
+            setDescricao(tarefaEmEdicao.descricao || "");
+            setMetaConclusao(tarefaEmEdicao.metaConclusao || "");
+            setPrioridade(tarefaEmEdicao.prioridade || "");
+            setStatus(tarefaEmEdicao.status || "não iniciada");
+        }
+        
+    }, [tarefaEmEdicao]);
+
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -33,17 +48,20 @@ function TarefaForm({ adicionarTarefa }) {
 
         // todos os campos de uma tarefa
         const novaTarefa = {
-            id: Date.now(),
+            id: tarefaEmEdicao ? tarefaEmEdicao.id : Date.now(),
             titulo,
             descricao,
             metaConclusao,
             prioridade,
             status,
-            criadaEm: new Date().toISOString(),
+            criadaEm:  tarefaEmEdicao ? tarefaEmEdicao.criadaEm : new Date().toISOString(),
         };
+        if (tarefaEmEdicao) {
+            editarTarefa(novaTarefa);
+        } else {
+            adicionarTarefa(novaTarefa);
+        }
 
-        adicionarTarefa(novaTarefa);
-        
 
         // resetando o estado
         setTitulo("");
@@ -51,57 +69,57 @@ function TarefaForm({ adicionarTarefa }) {
         setMetaConclusao("");
         setPrioridade("");
         setStatus("não iniciada");
-  }
+    }
 
-  return (
-    // formulario em si, com todos os campos
-    <form onSubmit={handleSubmit}>
-        <h2>Criar tarefa</h2>
+    return (
+        // formulario em si, com todos os campos
+        <form onSubmit={handleSubmit}>
+            <h2>Criar tarefa</h2>
 
-        <input
-            type="text"
-            placeholder="Título"
-            maxLength={60}
-            value={titulo}
-            onChange={(event) => setTitulo(event.target.value)}
-        />
+            <input
+                type="text"
+                placeholder="Título"
+                maxLength={60}
+                value={titulo}
+                onChange={(event) => setTitulo(event.target.value)}
+            />
 
-        <textarea
-            placeholder="Descrição"
-            maxLength={500}
-            value={descricao}
-            onChange={(event) => setDescricao(event.target.value)}
-        />
+            <textarea
+                placeholder="Descrição"
+                maxLength={500}
+                value={descricao}
+                onChange={(event) => setDescricao(event.target.value)}
+            />
 
-        <input
-            type="date"
-            value={metaConclusao}
-            onChange={(event) => setMetaConclusao(event.target.value)}
-        />
+            <input
+                type="date"
+                value={metaConclusao}
+                onChange={(event) => setMetaConclusao(event.target.value)}
+            />
 
-        <select
-            value={prioridade}
-            onChange={(event) => setPrioridade(event.target.value)}
-        >
-            <option value="">Sem prioridade</option>
-            <option value="critica">Crítica</option>
-            <option value="alta">Alta</option>
-            <option value="media">Média</option>
-            <option value="baixa">Baixa</option>
-        </select>
+            <select
+                value={prioridade}
+                onChange={(event) => setPrioridade(event.target.value)}
+            >
+                <option value="">Sem prioridade</option>
+                <option value="critica">Crítica</option>
+                <option value="alta">Alta</option>
+                <option value="media">Média</option>
+                <option value="baixa">Baixa</option>
+            </select>
 
-        <select
-            value={status}
-            onChange={(event) => setStatus(event.target.value)}
-        >
-            <option value="nao iniciada">Não iniciada</option>
-            <option value="em andamento">Em andamento</option>
-            <option value="concluida">Concluída</option>
-        </select>
+            <select
+                value={status}
+                onChange={(event) => setStatus(event.target.value)}
+            >
+                <option value="nao iniciada">Não iniciada</option>
+                <option value="em andamento">Em andamento</option>
+                <option value="concluida">Concluída</option>
+            </select>
 
-        <button className="btn-salvar" type="submit">Salvar tarefa</button>
-    </form>
-  );
+            <button className="btn-salvar" type="submit">Salvar tarefa</button>
+        </form>
+    );
 }
 
 export default TarefaForm;

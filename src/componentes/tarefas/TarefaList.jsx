@@ -1,6 +1,6 @@
 import TarefaCard from "./TarefaCard";
 
-function TarefaList({ tarefas, excluirTarefa }) {
+function TarefaList({ tarefas, excluirTarefa, abrirEdicao }) {
     return (
         <div>
             {/*  percorre a lista de tarefas (tarefas.map)
@@ -11,6 +11,7 @@ function TarefaList({ tarefas, excluirTarefa }) {
                     key={tarefa.id}
                     tarefa={tarefa}
                     excluirTarefa={excluirTarefa}
+                    abrirEdicao={abrirEdicao}
                 />
             ))}
         </div>
