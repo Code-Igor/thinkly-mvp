@@ -3,10 +3,10 @@ import Footer from "./Footer";
 
 function Layout({ children }) {
   return (
-    <div className="app-container">
+    <div className="layout">
       <Header />
 
-      <main className="main-content">
+      <main>
         {children}
       </main>
 
