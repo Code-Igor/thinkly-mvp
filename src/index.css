@@ -201,7 +201,7 @@ code {
   cursor: pointer;
 }
 .btn-salvar:hover {
-  background-color: #550082;;
+  background-color: #550082;
 }
 
 .btn-fechar {
@@ -219,7 +219,6 @@ code {
 
 
 /* <card> */
-
 /* deixando organizado em coluna */
 .listaTarefas{
   display: flex;
@@ -228,9 +227,31 @@ code {
 }
 
 article {
+  padding: 10px;
   margin: 20px;
-  background-color: #333;
-  border: 1px, white;
-  width: 200px;
+  background-color: #282436;
+  border: 1px solid white;
+  width: 500px;
 }
+
+article h2 {
+  margin-bottom: 10px;
+}
+
+article p {
+  text-align: justify; 
+}
+
+article button {
+  width: 200px;
+  padding: 5px;
+  margin: 15px;
+  margin-bottom: 5px;
+  background-color: #8d1dfd;
+}
+
+article button:hover {
+  background-color: #550082;
+}
+
 /* </card> */
